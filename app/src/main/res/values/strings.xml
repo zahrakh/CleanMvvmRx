@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Catawiki</string>
+    <string name="content_description_poster_image">Poster Image</string>
 </resources>
