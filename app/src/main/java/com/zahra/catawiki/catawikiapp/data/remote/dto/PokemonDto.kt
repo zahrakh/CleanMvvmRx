@@ -2,7 +2,7 @@ package com.zahra.catawiki.catawikiapp.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class PokemonDto(
+data class PokemonResponseDto(
     @SerializedName("count")
     val count: Long=0,
     @SerializedName("next")
@@ -10,10 +10,10 @@ data class PokemonDto(
     @SerializedName("previous")
     val previous: String?,
     @SerializedName("results")
-    val results: List<Result>,
+    val results: List<PokemonDto>,
 )
 
-data class Result(
+data class PokemonDto(
     @SerializedName("name")
     val name: String?,
     @SerializedName("url")
