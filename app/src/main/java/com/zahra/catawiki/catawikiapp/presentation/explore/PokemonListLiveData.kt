@@ -1,4 +1,6 @@
 package com.zahra.catawiki.catawikiapp.presentation.explore
 
-class PokemonListLiveData {
-}
+import dagger.hilt.android.lifecycle.HiltViewModel
+
+@HiltViewModel
+class PokemonListLiveData
