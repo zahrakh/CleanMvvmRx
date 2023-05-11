@@ -8,5 +8,5 @@ data class PokemonResponse(
 
 data class Pokemon(
     val name: String?,
-    val url: String?,
-)
+    val detailsUrl: String?,
+ )
