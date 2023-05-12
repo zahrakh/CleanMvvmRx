@@ -7,10 +7,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class PokemonListLiveData @Inject constructor(
-    stringProvider: StringProvider,
-    getPokemonsUseCase: GetPokemonsUseCase
-) : ViewModel(){
+class PokemonListViewModel @Inject constructor(
+    private val stringProvider: StringProvider,
+    private val getPokemonsUseCase: GetPokemonsUseCase
+) : ViewModel() {
+
 
 
 }
