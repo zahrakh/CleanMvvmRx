@@ -6,6 +6,6 @@ import io.reactivex.Single
 
 interface NetworkDataSource {
 
-    fun getPokemonSpecies(): Single<PokemonResponseDto>
+    fun getPokemonSpecies(pageUrl: String?): Single<PokemonResponseDto>
 
 }

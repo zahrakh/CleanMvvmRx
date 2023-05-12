@@ -1,9 +1,9 @@
 package com.zahra.catawiki.catawikiapp.domain.repository
 
-import com.zahra.catawiki.catawikiapp.domain.model.PokemonResponse
+import com.zahra.catawiki.catawikiapp.domain.model.Pokemons
 import io.reactivex.Single
 
 interface PokemonsRepository {
-    fun getPokemonSpecies(): Single<PokemonResponse>
+    fun getPokemonSpecies(pageUrl: String?): Single<Pokemons>
 
 }

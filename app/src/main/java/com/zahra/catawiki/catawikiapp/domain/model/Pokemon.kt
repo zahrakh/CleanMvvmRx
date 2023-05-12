@@ -1,12 +1,13 @@
 package com.zahra.catawiki.catawikiapp.domain.model
 
-data class PokemonResponse(
-    val count: Long = 0,
-    val next: String?,
-    val results: List<Pokemon>,
+data class Pokemons(
+    val count: Int=0,
+    val next: String?=null,
+    val results: List<Pokemon> = arrayListOf(),
 )
 
 data class Pokemon(
     val name: String?,
     val detailsUrl: String?,
+    val imageUrl:String?
  )

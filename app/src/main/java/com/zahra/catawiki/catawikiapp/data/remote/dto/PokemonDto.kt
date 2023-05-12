@@ -1,12 +1,13 @@
 package com.zahra.catawiki.catawikiapp.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
+import com.zahra.catawiki.catawikiapp.data.remote.Api
 import com.zahra.catawiki.catawikiapp.domain.model.Pokemon
-import com.zahra.catawiki.catawikiapp.domain.model.PokemonResponse
+import com.zahra.catawiki.catawikiapp.domain.model.Pokemons
 
 data class PokemonResponseDto(
     @SerializedName("count")
-    val count: Long = 0,
+    val count: Int = 0,
     @SerializedName("next")
     val next: String?,
     @SerializedName("previous")
@@ -14,8 +15,8 @@ data class PokemonResponseDto(
     @SerializedName("results")
     val results: List<PokemonDto>,
 ) {
-    fun toPokemonResponse(): PokemonResponse {
-        return PokemonResponse(
+    fun toPokemonResponse(): Pokemons {
+        return Pokemons(
             count = count,
             next = next,
             results = results.map {
@@ -34,7 +35,8 @@ data class PokemonDto(
     fun toPokemon(): Pokemon {
         return Pokemon(
             name = name,
-            detailsUrl = url
+            detailsUrl = url,
+            imageUrl = Api.IMAGE_BASE_URL
         )
     }
 }

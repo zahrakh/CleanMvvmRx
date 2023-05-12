@@ -7,7 +7,8 @@ import com.zahra.catawiki.catawikiapp.data.remote.*
 import com.zahra.catawiki.catawikiapp.data.remote.Api.Companion.BASE_URL
 import com.zahra.catawiki.catawikiapp.data.repository.PokemonsRepositoryDefault
 import com.zahra.catawiki.catawikiapp.domain.repository.PokemonsRepository
-import com.zahra.catawiki.catawikiapp.domain.usecase.base.GetPokemonsUseCase
+import com.zahra.catawiki.catawikiapp.domain.usecase.GetPokemonsUseCase
+import com.zahra.catawiki.catawikiapp.domain.usecase.GetPokemonsUseCaseDefault
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -82,7 +83,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGetPokemonsUseCase(repository: PokemonsRepositoryDefault): GetPokemonsUseCase{
-        return GetPokemonsUseCase(repository)
+        return GetPokemonsUseCaseDefault(repository)
     }
 
 }

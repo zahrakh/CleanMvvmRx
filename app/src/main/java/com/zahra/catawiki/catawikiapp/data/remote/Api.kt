@@ -3,6 +3,7 @@ package com.zahra.catawiki.catawikiapp.data.remote
 import com.zahra.catawiki.catawikiapp.data.remote.dto.PokemonResponseDto
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Url
 
 interface Api {
 
@@ -14,4 +15,6 @@ interface Api {
     @GET("pokemon-species")
     fun getPokemonSpecies(): Single<PokemonResponseDto>
 
+    @GET
+    fun getPokemonSpeciesWithUrl(@Url pageUrl:String): Single<PokemonResponseDto>
 }
