@@ -33,14 +33,13 @@ class PokemonListViewModel @Inject constructor(
     private var nextUrl: String? = null
 
     init {
-        getPokemons(nextUrl)
+        getPokemons()
     }
 
-    fun getPokemons(
-        url: String? = null
-    ) {
+    fun getPokemons() {
         _loading.postValue(true)
-        lastDisposable = getPokemonsUseCase.invoke(url)
+        _error.postValue(false)
+        lastDisposable = getPokemonsUseCase.invoke(nextUrl)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

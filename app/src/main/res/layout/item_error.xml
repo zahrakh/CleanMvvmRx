@@ -13,7 +13,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:backgroundTint="@color/on_surface_variant"
+        app:backgroundTint="@color/md_theme_light_surfaceTint"
         android:text="@string/retry"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

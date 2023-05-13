@@ -10,6 +10,7 @@
     <dimen name="text_xs">12sp</dimen>
     <dimen name="text_xxs">11sp</dimen>
     <!-- NEW DESIGN SPACING SIZES -->
+    <dimen name="spacing_xxl7">84dp</dimen>
     <dimen name="spacing_xxl6">64dp</dimen>
     <dimen name="spacing_xxl5">56dp</dimen>
     <dimen name="spacing_xxl4">48dp</dimen>

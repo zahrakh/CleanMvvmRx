@@ -1,7 +1,10 @@
 package com.zahra.catawiki.catawikiapp.presentation.explore
 
+import android.graphics.Rect
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -10,6 +13,7 @@ import com.zahra.catawiki.catawikiapp.domain.model.Pokemon
 import com.zahra.catawiki.databinding.ItemErrorBinding
 import com.zahra.catawiki.databinding.ItemLoadingBinding
 import com.zahra.catawiki.databinding.ItemPokemonBinding
+import com.zahra.catawiki.utils.dp
 
 
 class PokemonAdapter(
@@ -39,6 +43,23 @@ class PokemonAdapter(
 
     var noMoreData = false
 
+    private val itemDecoration = object : RecyclerView.ItemDecoration() {
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State,
+        ) {
+            super.getItemOffsets(outRect, view, parent, state)
+            val dp16 = 10.dp
+            outRect.right = dp16
+            outRect.left = dp16
+            outRect.top = dp16 / 2
+            outRect.bottom = dp16 / 2
+
+        }
+    }
+
     fun appendData(list: List<Pokemon>, totalPages: Int) {
         if (totalPages == 0) return //todo check condition
         val currentItemsSize = items.size
@@ -53,6 +74,16 @@ class PokemonAdapter(
         if (items.isEmpty()) {
             showEmptyState()
         }
+    }
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        recyclerView.addItemDecoration(itemDecoration)
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        recyclerView.removeItemDecoration(itemDecoration)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -133,8 +164,9 @@ class PokemonAdapter(
         RecyclerView.ViewHolder(view.root) {
         fun bind(position: Int) {
             with(items[position]) {
+
                 view.tvPokemonName.text = this.name
-                view.ivPoster.load(this.imageUrl) {
+                view.ivPoster.load(this.imageUrl + "${(position + 1)}.png") {
                     transformations(CircleCropTransformation())
                     error(R.drawable.placeholder)
                     placeholder(R.drawable.placeholder)

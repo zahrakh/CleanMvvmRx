@@ -44,11 +44,11 @@ class PokemonListFragment : Fragment() {
     private fun observer() {
 
         viewModel.loading.observe(viewLifecycleOwner) {
-            adapter.isLoading = true
+            adapter.isLoading = it
         }
 
         viewModel.error.observe(viewLifecycleOwner) {
-            adapter.isError = true
+            adapter.isError = it
         }
 
         viewModel.pokemonList.observe(viewLifecycleOwner) {
