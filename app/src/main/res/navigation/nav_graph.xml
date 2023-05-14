@@ -4,10 +4,17 @@
     android:id="@+id/nav_graph.xml"
     app:startDestination="@id/pokemonListFragment">
 
-
     <fragment
         android:id="@+id/pokemonListFragment"
         android:name="com.zahra.catawiki.catawikiapp.presentation.explore.PokemonListFragment"
-        android:label="PokemonListFragment" />
+        android:label="PokemonListFragment">
+        <action
+            android:id="@+id/action_pokemonListFragment_to_pokemonDetailsFragment"
+            app:destination="@id/pokemonDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonDetailsFragment"
+        android:name="com.zahra.catawiki.catawikiapp.presentation.details.PokemonDetailsFragment"
+        android:label="PokemonDetailsFragment" />
 
 </navigation>
