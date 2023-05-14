@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_s"
                 android:text="@string/capture_rate"
-                android:textColor="@color/md_theme_dark_inversePrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/text_s"
                 app:layout_constraintStart_toStartOf="@id/divider1"
                 app:layout_constraintTop_toBottomOf="@id/divider1" />

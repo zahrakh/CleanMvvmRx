@@ -16,7 +16,7 @@ import com.zahra.catawiki.utils.dp
 
 
 class PokemonAdapter(
-    private var click: (Pokemon, Int) -> Unit,
+    private var click: (Pokemon, Int,View) -> Unit,
     private var onLoadMoreListener: () -> Unit,
     private var showEmptyState: () -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -171,7 +171,7 @@ class PokemonAdapter(
                     placeholder(R.drawable.placeholder)
                 }
                 itemView.setOnClickListener {
-                    click.invoke(items[position], position)
+                    click.invoke(items[position], position,view.ivPoster)
                 }
             }
         }

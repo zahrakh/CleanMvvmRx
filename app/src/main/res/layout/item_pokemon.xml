@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_m"
         android:textSize="@dimen/text_l"
-        android:textColor="@color/md_theme_light_onSurface"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@id/iv_poster"
         app:layout_constraintStart_toEndOf="@id/iv_poster"
         app:layout_constraintTop_toTopOf="@id/iv_poster"

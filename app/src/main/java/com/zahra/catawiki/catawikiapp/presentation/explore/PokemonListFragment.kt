@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import com.zahra.catawiki.R
 import com.zahra.catawiki.catawikiapp.domain.model.Pokemon
 import com.zahra.catawiki.catawikiapp.presentation.details.PokemonDetailsFragment.Companion.ARG_SELECTED_POKEMON_OBJECT
@@ -29,8 +31,8 @@ class PokemonListFragment : Fragment() {
         showEmptyState = {
             binding.tvEmptyState.show()
         },
-        click = { pokemon, position ->
-            navigateToDetailsFragment(pokemon,position)
+        click = { pokemon, position, view ->
+            navigateToDetailsFragment(pokemon, position, view)
         }
     )
 
@@ -67,15 +69,33 @@ class PokemonListFragment : Fragment() {
         binding.recyclerView.adapter = adapter
     }
 
-    private fun navigateToDetailsFragment(pokemon: Pokemon, position: Int) {
-        safeNavigate(
-            R.id.action_pokemonListFragment_to_pokemonDetailsFragment,
-            Bundle().apply {
-                putParcelable(ARG_SELECTED_POKEMON_OBJECT, pokemon.apply {
-                    this.id=position+1
+    private fun navigateToDetailsFragment(pokemon: Pokemon, position: Int, view: View) {
+        val transactionName = context?.getString(R.string.transition_name_poster)
+        view.transitionName = transactionName
+        if (transactionName != null) {
+            val extras = FragmentNavigatorExtras(
+                view to transactionName
+            )
+            findNavController().navigate(
+                resId = R.id.action_pokemonListFragment_to_pokemonDetailsFragment,
+                args = Bundle().apply {
+                    putParcelable(ARG_SELECTED_POKEMON_OBJECT, pokemon.apply {
+                        this.id = position + 1
+                    })
+                },
+                navOptions = null,
+                navigatorExtras = extras
+            )
+        } else {
+            safeNavigate(resId = R.id.action_pokemonListFragment_to_pokemonDetailsFragment,
+                args = Bundle().apply {
+                    putParcelable(ARG_SELECTED_POKEMON_OBJECT, pokemon.apply {
+                        this.id = position + 1
+                    })
                 })
-            }
-        )
+        }
+
+
     }
 
     override fun onDestroyView() {

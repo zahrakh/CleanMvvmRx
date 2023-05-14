@@ -11,6 +11,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.zahra.catawiki.R
 import com.zahra.catawiki.databinding.FragmentPokemonDetailsBinding
 import com.zahra.catawiki.utils.parcelable
+import androidx.navigation.fragment.findNavController
+import androidx.transition.TransitionInflater
 import com.zahra.catawiki.utils.showHide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,7 +46,10 @@ class PokemonDetailsFragment : Fragment() {
                 )
             }
         }
+        sharedElementEnterTransition =
+            TransitionInflater.from(context ?: return).inflateTransition(android.R.transition.move)
         observer()
+        listener()
     }
 
     private fun observer() {
@@ -69,6 +74,13 @@ class PokemonDetailsFragment : Fragment() {
         }
     }
 
+    private fun listener() {
+
+        binding.btnBack.setOnClickListener {
+           findNavController().popBackStack()
+        }
+
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
