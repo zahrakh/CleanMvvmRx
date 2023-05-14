@@ -4,7 +4,6 @@ import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -17,6 +16,7 @@ import com.zahra.catawiki.utils.dp
 
 
 class PokemonAdapter(
+    private var click: (Pokemon, Int) -> Unit,
     private var onLoadMoreListener: () -> Unit,
     private var showEmptyState: () -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -164,12 +164,14 @@ class PokemonAdapter(
         RecyclerView.ViewHolder(view.root) {
         fun bind(position: Int) {
             with(items[position]) {
-
                 view.tvPokemonName.text = this.name
                 view.ivPoster.load(this.imageUrl + "${(position + 1)}.png") {
                     transformations(CircleCropTransformation())
                     error(R.drawable.placeholder)
                     placeholder(R.drawable.placeholder)
+                }
+                itemView.setOnClickListener {
+                    click.invoke(items[position], position)
                 }
             }
         }

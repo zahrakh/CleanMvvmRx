@@ -1,6 +1,7 @@
 package com.zahra.catawiki.catawikiapp.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
+import com.zahra.catawiki.catawikiapp.data.remote.Api
 import com.zahra.catawiki.catawikiapp.domain.model.PokemonDetails
 
 
@@ -88,8 +89,9 @@ data class PokemonDetailDto(
 ) {
     fun toPokemonDetails(): PokemonDetails {
         return PokemonDetails(
-            this.name,
-            this.flavorTextEntries.toString()
+            name = this.name,
+            description = this.flavorTextEntries?.get(0)?.flavorText?:"",
+            imageUrl = Api.IMAGE_BASE_URL
         )
     }
 }

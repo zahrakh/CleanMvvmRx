@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.zahra.catawiki.catawikiapp.data.remote.StringProvider
+import com.zahra.catawiki.catawikiapp.domain.model.Pokemon
 import com.zahra.catawiki.catawikiapp.domain.model.PokemonDetails
 import com.zahra.catawiki.catawikiapp.domain.usecase.GetPokemonDetailsUseCaseDefault
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,13 +26,23 @@ class PokemonDetailsViewModel @Inject constructor(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> = _error
+    private val _error = MutableLiveData<String?>()
+    val error: LiveData<String?> = _error
 
     private var lastDisposable: Disposable? = null
     private val compositeDisposable = CompositeDisposable()
+    lateinit var selectedPokemonDetails: PokemonDetails
 
-    fun getPokemonDetails(pageUrl: String) {
+    fun setSelectedPokemon(pokemon: Pokemon?) {
+        selectedPokemonDetails = PokemonDetails(
+            name = pokemon?.name,
+            description = "",
+            imageUrl = pokemon?.imageUrl + pokemon?.id + ".png",
+        )
+        getPokemonDetails(pokemon?.detailsUrl)
+    }
+
+    private fun getPokemonDetails(pageUrl: String?) {
         _loading.postValue(true)
         lastDisposable = getDetailsUseCase.invoke(pageUrl)
             .subscribeOn(Schedulers.io())
@@ -39,9 +50,10 @@ class PokemonDetailsViewModel @Inject constructor(
             .subscribe(
                 {
                     _loading.postValue(false)
-                    _pokemonDetails.postValue(it)
+                    _pokemonDetails.postValue(selectedPokemonDetails.apply {
+                        this.description = it.description
+                    })
                 }, {
-                    //todo check error type
                     _loading.postValue(false)
                     _error.postValue(it.message)
                 }

@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.zahra.catawiki.R
+import com.zahra.catawiki.catawikiapp.domain.model.Pokemon
+import com.zahra.catawiki.catawikiapp.presentation.details.PokemonDetailsFragment.Companion.ARG_SELECTED_POKEMON_OBJECT
 import com.zahra.catawiki.databinding.FragmentPokemonListBinding
+import com.zahra.catawiki.utils.safeNavigate
 import com.zahra.catawiki.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +28,9 @@ class PokemonListFragment : Fragment() {
         },
         showEmptyState = {
             binding.tvEmptyState.show()
+        },
+        click = { pokemon, position ->
+            navigateToDetailsFragment(pokemon,position)
         }
     )
 
@@ -54,11 +61,21 @@ class PokemonListFragment : Fragment() {
         viewModel.pokemonList.observe(viewLifecycleOwner) {
             adapter.appendData(it.results, it.count)
         }
-
     }
 
     private fun recycler() {
-        binding.recyclerView.adapter=adapter
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun navigateToDetailsFragment(pokemon: Pokemon, position: Int) {
+        safeNavigate(
+            R.id.action_pokemonListFragment_to_pokemonDetailsFragment,
+            Bundle().apply {
+                putParcelable(ARG_SELECTED_POKEMON_OBJECT, pokemon.apply {
+                    this.id=position+1
+                })
+            }
+        )
     }
 
     override fun onDestroyView() {

@@ -9,4 +9,6 @@
     <string name="page_title_pokemon_list">Pokemons</string>
     <string name="place_holder_image">Placeholder Image</string>
     <string name="transition_name_poster">Image</string>
+    <string name="capture_rate">Capture rate</string>
+
 </resources>
