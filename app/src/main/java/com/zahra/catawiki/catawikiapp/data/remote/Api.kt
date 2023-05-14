@@ -1,5 +1,6 @@
 package com.zahra.catawiki.catawikiapp.data.remote
 
+import com.zahra.catawiki.catawikiapp.data.remote.dto.PokemonDetailDto
 import com.zahra.catawiki.catawikiapp.data.remote.dto.PokemonResponseDto
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -17,4 +18,7 @@ interface Api {
 
     @GET
     fun getPokemonSpeciesWithUrl(@Url pageUrl:String): Single<PokemonResponseDto>
+
+    @GET
+    fun getPokemonDetails(@Url pageUrl:String?): Single<PokemonDetailDto>
 }
