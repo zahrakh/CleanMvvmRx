@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.zahra.catawiki.R
 import com.zahra.catawiki.catawikiapp.domain.model.Pokemon
 import com.zahra.catawiki.catawikiapp.presentation.details.PokemonDetailsFragment.Companion.ARG_SELECTED_POKEMON_OBJECT
@@ -67,6 +68,13 @@ class PokemonListFragment : Fragment() {
         viewModel.pokemonList.observe(viewLifecycleOwner) {
             adapter.appendData(it.results, it.count)
         }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
+            it?.let {
+                Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
+            }
+        }
+
     }
 
     private fun recycler() {

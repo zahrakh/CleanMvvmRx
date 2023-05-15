@@ -24,6 +24,7 @@ class PokemonDetailsFragment : Fragment() {
     //I decided not to call all three APIs at the same time via Flatmap
     // show user name and image from prev page
     //show api details
+    //show api details
     //call two other api in same time
 
     companion object {
