@@ -75,7 +75,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMoviesRepository(repository: PokemonsRepositoryDefault): PokemonsRepository {
+    fun providePokemonsRepository(repository: PokemonsRepositoryDefault): PokemonsRepository {
         return repository
     }
 

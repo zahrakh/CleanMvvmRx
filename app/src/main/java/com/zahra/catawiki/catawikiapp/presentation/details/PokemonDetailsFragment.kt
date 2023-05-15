@@ -11,7 +11,6 @@ import coil.load
 import com.google.android.material.snackbar.Snackbar
 import com.zahra.catawiki.R
 import com.zahra.catawiki.databinding.FragmentPokemonDetailsBinding
-import com.zahra.catawiki.utils.parcelable
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import coil.transform.CircleCropTransformation
@@ -50,7 +49,7 @@ class PokemonDetailsFragment : Fragment() {
         arguments?.let {
             if (it.containsKey(ARG_SELECTED_POKEMON_OBJECT)) {
                 viewModel.setSelectedPokemon(
-                    it.parcelable(ARG_SELECTED_POKEMON_OBJECT)
+                    it.getParcelable(ARG_SELECTED_POKEMON_OBJECT)
                 )
             }
         }

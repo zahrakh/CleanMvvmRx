@@ -11,7 +11,6 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import java.util.*
 
 class PokemonsRepositoryImplTest {
 
@@ -26,7 +25,7 @@ class PokemonsRepositoryImplTest {
     }
 
     @Test
-    fun `test get popular movies success`(): Unit = runBlocking {
+    fun `test get popular pokemon success`(): Unit = runBlocking {
         `when`(networkDataSource.getPokemonSpecies(pageUrl = null))
             .thenReturn(
                 Single.just(

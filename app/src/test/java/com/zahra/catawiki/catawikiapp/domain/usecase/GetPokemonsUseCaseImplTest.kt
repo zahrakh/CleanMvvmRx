@@ -6,8 +6,8 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito
-import org.mockito.kotlin.times
-import org.mockito.kotlin.verify
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 
 class GetPokemonsUseCaseImplTest {
 
