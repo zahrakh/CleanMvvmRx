@@ -7,10 +7,7 @@ import com.zahra.catawiki.catawikiapp.data.remote.*
 import com.zahra.catawiki.catawikiapp.data.remote.Api.Companion.BASE_URL
 import com.zahra.catawiki.catawikiapp.data.repository.PokemonsRepositoryDefault
 import com.zahra.catawiki.catawikiapp.domain.repository.PokemonsRepository
-import com.zahra.catawiki.catawikiapp.domain.usecase.GetPokemonDetailsUseCase
-import com.zahra.catawiki.catawikiapp.domain.usecase.GetPokemonDetailsUseCaseDefault
-import com.zahra.catawiki.catawikiapp.domain.usecase.GetPokemonsUseCase
-import com.zahra.catawiki.catawikiapp.domain.usecase.GetPokemonsUseCaseDefault
+import com.zahra.catawiki.catawikiapp.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -84,14 +81,28 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideGetPokemonsUseCase(repository: PokemonsRepositoryDefault): GetPokemonsUseCase{
+    fun provideGetPokemonsUseCase(repository: PokemonsRepositoryDefault): GetPokemonsUseCase {
         return GetPokemonsUseCaseDefault(repository)
     }
 
     @Provides
     @Singleton
-    fun provideGetPokemonDetailsUseCase(repository: PokemonsRepositoryDefault): GetPokemonDetailsUseCase{
+    fun provideGetPokemonDetailsUseCase(repository: PokemonsRepositoryDefault): GetPokemonDetailsUseCase {
         return GetPokemonDetailsUseCaseDefault(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetPokemonRateUseCase(repository: PokemonsRepositoryDefault): GetPokemonRateUseCase {
+        return GetPokemonRateUseCaseDefault(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetPokemonChainEvolutionUseCase(
+        repository: PokemonsRepositoryDefault
+    ): GetPokemonChainEvolutionUseCase {
+        return GetPokemonChainEvolutionUseCaseDefault(repository)
     }
 }
 

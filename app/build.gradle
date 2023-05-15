@@ -64,6 +64,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'junit:junit:4.12'
     testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'org.junit.jupiter:junit-jupiter'
     kapt 'com.google.dagger:hilt-compiler:2.45'
 

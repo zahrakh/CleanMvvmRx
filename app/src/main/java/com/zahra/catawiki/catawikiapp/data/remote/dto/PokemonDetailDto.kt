@@ -21,14 +21,8 @@ data class PokemonDetailDto(
     @SerializedName("evolution_chain")
     var evolutionChain: EvolutionChainDto? = null,
 
-    @SerializedName("evolves_from_species")
-    var evolvesFromSpecies: Any? = null,
-
     @SerializedName("flavor_text_entries")
     var flavorTextEntries: List<FlavorTextEntryDto>? = null,
-
-    @SerializedName("form_descriptions")
-    var formDescriptions: List<Any>? = null,
 
     @SerializedName("forms_switchable")
     var formsSwitchable: Boolean? = null,
@@ -91,7 +85,8 @@ data class PokemonDetailDto(
         return PokemonDetails(
             name = this.name,
             description = this.flavorTextEntries?.get(0)?.flavorText?:"",
-            imageUrl = Api.IMAGE_BASE_URL
+            imageUrl = Api.IMAGE_BASE_URL,
+            captureRate = this.captureRate
         )
     }
 }

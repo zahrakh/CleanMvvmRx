@@ -112,14 +112,13 @@
 
             <TextView
                 android:id="@+id/tv_name"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
+                android:layout_marginHorizontal="@dimen/spacing_l"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:gravity="start"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_view"
                 tools:text="Pokemon Name" />
@@ -139,50 +138,89 @@
                 android:id="@+id/tv_capture_rate_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
                 android:layout_marginTop="@dimen/spacing_s"
                 android:text="@string/capture_rate"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/black"
                 android:textSize="@dimen/text_s"
-                app:layout_constraintStart_toStartOf="@id/divider1"
-                app:layout_constraintTop_toBottomOf="@id/divider1" />
+                app:layout_constraintStart_toEndOf="@+id/iv_spices"
+                app:layout_constraintTop_toTopOf="@+id/iv_spices" />
 
             <TextView
                 android:id="@+id/tv_capture_rate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_l"
                 android:textColor="@color/light_green"
                 android:textSize="@dimen/text_l"
                 app:layout_constraintBottom_toBottomOf="@id/tv_capture_rate_title"
-                app:layout_constraintEnd_toEndOf="@id/divider2"
+                app:layout_constraintStart_toEndOf="@+id/tv_capture_rate_title"
                 app:layout_constraintTop_toTopOf="@id/tv_capture_rate_title"
-                tools:text="20" />
+                tools:text="-" />
+
+
+            <TextView
+                android:id="@+id/tv_spices_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:text="@string/evolves_to"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_s"
+                app:layout_constraintStart_toEndOf="@+id/iv_spices"
+                app:layout_constraintTop_toBottomOf="@+id/tv_capture_rate_title" />
+
+
+            <TextView
+                android:id="@+id/tv_spices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_xs"
+                 android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_s"
+                app:layout_constraintBottom_toBottomOf="@id/tv_spices_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_spices_title"
+                app:layout_constraintTop_toTopOf="@id/tv_spices_title" />
+
 
             <View
                 android:id="@+id/divider2"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="@dimen/spacing_l"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/spacing_m"
                 android:background="@color/outline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_capture_rate_title" />
+                app:layout_constraintTop_toBottomOf="@id/iv_spices" />
 
             <TextView
                 android:id="@+id/tv_description"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/spacing_l"
                 android:layout_marginTop="@dimen/spacing_m"
-                android:layout_marginBottom="@dimen/spacing_m"
                 android:gravity="start"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_m"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider2"
-                tools:text="@tools:sample/lorem/random" />
+                tools:text="@string/content_description_poster_image" />
+
+
+            <ImageView
+                android:id="@+id/iv_spices"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:layout_marginEnd="@dimen/spacing_l"
+                android:src="@drawable/placeholder"
+                app:layout_constraintStart_toStartOf="@id/divider1"
+                app:layout_constraintTop_toBottomOf="@id/divider1" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

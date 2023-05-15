@@ -1,5 +1,6 @@
 package com.zahra.catawiki.catawikiapp.presentation.details
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +14,17 @@ import com.zahra.catawiki.databinding.FragmentPokemonDetailsBinding
 import com.zahra.catawiki.utils.parcelable
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
+import coil.transform.CircleCropTransformation
 import com.zahra.catawiki.utils.showHide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PokemonDetailsFragment : Fragment() {
+
+    //I decided not to call all three APIs at the same time via Flatmap
+    // show user name and image from prev page
+    //show api details
+    //call two other api in same time
 
     companion object {
         const val ARG_SELECTED_POKEMON_OBJECT = "arg_selected_pokemon_object"
@@ -72,12 +79,23 @@ class PokemonDetailsFragment : Fragment() {
             }
             binding.tvDescription.text = it.description
         }
+
+        viewModel.chainAndRate.observe(viewLifecycleOwner) {
+            binding.tvCaptureRate.setTextColor(if (it?.isPositiveRate() == true) Color.GREEN else Color.RED)
+            binding.tvCaptureRate.text = it?.speciesRate.toString()
+            binding.tvSpices.text = it?.chain?.species?.name
+            binding.ivSpices.load(it?.ImageUrl) {
+                transformations(CircleCropTransformation())
+                placeholder(R.drawable.placeholder)
+                error(R.drawable.placeholder)
+            }
+        }
     }
 
     private fun listener() {
 
         binding.btnBack.setOnClickListener {
-           findNavController().popBackStack()
+            findNavController().popBackStack()
         }
 
     }

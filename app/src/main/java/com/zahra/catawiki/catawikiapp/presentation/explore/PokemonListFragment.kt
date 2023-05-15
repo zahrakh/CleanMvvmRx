@@ -19,6 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class PokemonListFragment : Fragment() {
 
+    //The Ui requirement that i did not have time to create:
+    // Splash
+    // Refresh Layout
+
     private val viewModel: PokemonListViewModel by viewModels()
 
     private var _binding: FragmentPokemonListBinding? = null
